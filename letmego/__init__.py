@@ -92,14 +92,19 @@ def _trace(func):
                         a = list(a)[1:]
         except IndexError:
             pass
-        # logger.info(f"[{func.__name__}]: " f"{title}", auteadd=False)
-        print(f"[{func.__name__}]")
+        # print(dir(inspect))
+        # print(inspect.getmodule(func))
+        # print(inspect.getsourcefile(func))
+        # print(inspect.getsourcelines(func))
+        # print(inspect.getsource(func))
+        print(inspect.getsourcelines(func))
+        # print(f"func_name:{func.__name__}, args: {a}")
         return func(*a, **kw)
 
     return wrapped
 
 
-def lemego(cls):
+def letmego(cls):
     """
     类日志装饰器
     :param cls:
@@ -122,11 +127,11 @@ def lemego(cls):
         #     (class_name.find(text) > -1 for text in setting.CLASS_NAME_CONTAIN)
         # )
         # ):
-        if hasattr(getattr(cls, name), "__log"):
-            if not getattr(cls, name).__log:
+        if hasattr(getattr(cls, name), "__letmego"):
+            if not getattr(cls, name).__letmego:
                 setattr(cls, name, _trace(obj))
-                setattr(getattr(cls, name), "__log", True)
+                setattr(getattr(cls, name), "__letmego", True)
         else:
             setattr(cls, name, _trace(obj))
-            setattr(getattr(cls, name), "__log", True)
+            setattr(getattr(cls, name), "__letmego", True)
     return cls

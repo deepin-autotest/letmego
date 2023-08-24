@@ -1,7 +1,7 @@
-from letmego import lemego
+from letmego import letmego
 
 
-@lemego
+@letmego
 class Page:
 
     def click_some_element_self(self):
