@@ -1,15 +1,14 @@
 import pytest
 from test.page import Page
-from letmego import letmego
 
-@letmego
-class Test:
+
+class Test1:
 
     def test_001(self):
         """test 001"""
 
-
         Page().click_some_element_self()
         Page().click_some_element_cls()
         Page().click_some_element_static()
+        # 和 10 行相同的步骤
         Page().click_some_element_self()

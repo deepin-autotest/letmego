@@ -7,6 +7,7 @@ import threading
 import time
 import weakref
 from functools import wraps
+from letmego.conf import setting
 
 
 class Singleton(type):
@@ -92,13 +93,25 @@ def _trace(func):
                         a = list(a)[1:]
         except IndexError:
             pass
-        # print(dir(inspect))
-        # print(inspect.getmodule(func))
-        # print(inspect.getsourcefile(func))
-        # print(inspect.getsourcelines(func))
-        # print(inspect.getsource(func))
-        print(inspect.getsourcelines(func))
-        # print(f"func_name:{func.__name__}, args: {a}")
+        frame = inspect.currentframe()
+        case_filename = str(frame.f_back.f_code.co_filename)
+        page_class_name = inspect._findclass(func).__name__
+        page_func_name = func.__name__
+        page_func_line = str(frame.f_back.f_lineno)
+        case_func_name = str(frame.f_back.f_code.co_name)
+        case_class_name = re.findall(r"<.*?\.test.*?\.(.*?) object at .*?>", str(frame.f_back.f_locals.get("self")))
+        if case_class_name:
+            case_class_name = case_class_name[0]
+        running_man = f"{case_filename}-{case_class_name}-{case_func_name}-{page_class_name}-{page_func_name}-{page_func_line}"
+        marks = []
+        if os.path.exists(os.path.expanduser(setting.MARK_FILE)):
+            with open(os.path.expanduser(setting.MARK_FILE), "r", encoding="utf-8") as f:
+                marks = f.readlines()
+        if f"{running_man}\n" not in marks:
+            with open(os.path.expanduser(setting.MARK_FILE), "a+", encoding="utf-8") as f:
+                f.write(f"{running_man}\n")
+        else:
+            return None
         return func(*a, **kw)
 
     return wrapped
@@ -106,27 +119,13 @@ def _trace(func):
 
 def letmego(cls):
     """
-    类日志装饰器
+    类装饰器
     :param cls:
     :return:
     """
     for name, obj in inspect.getmembers(
             cls, lambda x: inspect.isfunction(x) or inspect.ismethod(x)
     ):
-        try:
-            class_name = obj.__qualname__.split(".")[0]
-        except AttributeError:
-            class_name = obj.__self__.__name__
-        if name.startswith("_"):
-            continue
-        # else:
-        # if (
-        #         class_name.startswith(setting.CLASS_NAME_STARTSWITH)
-        #         or class_name.endswith(setting.CLASS_NAME_ENDSWITH)
-        #         or any(
-        #     (class_name.find(text) > -1 for text in setting.CLASS_NAME_CONTAIN)
-        # )
-        # ):
         if hasattr(getattr(cls, name), "__letmego"):
             if not getattr(cls, name).__letmego:
                 setattr(cls, name, _trace(obj))
