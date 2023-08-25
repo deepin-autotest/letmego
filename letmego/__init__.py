@@ -68,7 +68,6 @@ def _trace(func):
     @wraps(func)
     def wrapped(*args, **kwargs):
         try:
-            # 对象实例化后调用类方法报错处理
             if (
                     isinstance(args[0], inspect._findclass(func))
                     and func.__name__ != "__init__"

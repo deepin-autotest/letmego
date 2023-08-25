@@ -12,8 +12,6 @@
 [![Downloads](https://static.pepy.tech/badge/letmego/month)](https://pepy.tech/project/letmego)
 [![Downloads](https://static.pepy.tech/badge/letmego)](https://pepy.tech/project/letmego)
 
-English | [简体中文](README.zh_CN.md) 
-
 letmego is 
 
 ## Installation
@@ -21,13 +19,13 @@ letmego is
 - Installing from PyPI:
 
   ```shel
-  sudo pip3 install letmego
+  pip3 install letmego
   ```
 
 ## Usage
 
-```sh
-xx
+```python
+{!../test/page.py!}
 ```
 
 ## Documentations
