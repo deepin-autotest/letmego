@@ -8,26 +8,22 @@ from letmego.conf import setting
 
 
 class Singleton(type):
-    """单例模式"""
+    """Singleton"""
 
     _instance_lock = threading.Lock()
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         Singleton.__instance = None
-        # 初始化存放实例地址
         self._cache = weakref.WeakValueDictionary()
 
     def __call__(self, *args, **kwargs):
-        # 提取类初始化时的参数
         kargs = "".join([f"{key}" for key in args]) if args else ""
         kkwargs = "".join([f"{key}" for key in kwargs]) if kwargs else ""
-        # 判断相同参数的实例师否被创建
-        if kargs + kkwargs not in self._cache:  # 存在则从内存地址中取实例
+        if kargs + kkwargs not in self._cache:
             with Singleton._instance_lock:
                 Singleton.__instance = super().__call__(*args, **kwargs)
                 self._cache[kargs + kkwargs] = Singleton.__instance
-        # 不存在则新建实例
         else:
             Singleton.__instance = self._cache[kargs + kkwargs]
         return Singleton.__instance
@@ -70,11 +66,11 @@ def is_static_method(klass_or_instance, attr: str):
 
 def _trace(func):
     @wraps(func)
-    def wrapped(*a, **kw):
+    def wrapped(*args, **kwargs):
         try:
             # 对象实例化后调用类方法报错处理
             if (
-                    isinstance(a[0], inspect._findclass(func))
+                    isinstance(args[0], inspect._findclass(func))
                     and func.__name__ != "__init__"
             ):
                 if func:
@@ -87,7 +83,7 @@ def _trace(func):
                                 ),
                             ]
                     ):
-                        a = list(a)[1:]
+                        args = list(args)[1:]
         except IndexError:
             pass
         frame = inspect.currentframe()
@@ -96,7 +92,7 @@ def _trace(func):
         page_func_name = func.__name__
         page_func_line = str(frame.f_back.f_lineno)
         case_func_name = str(frame.f_back.f_code.co_name)
-        case_class_name = re.findall(r"<.*?\.test.*?\.(.*?) object at .*?>", str(frame.f_back.f_locals.get("self")))
+        case_class_name = re.findall(rf"<.*?\.{setting.TARGET_FILE_STARTWITH}.*?\.(.*?) object at .*?>", str(frame.f_back.f_locals.get("self")))
         if case_class_name:
             case_class_name = case_class_name[0]
         running_man = f"{case_filename}-{case_class_name}-{case_func_name}-{page_class_name}-{page_func_name}-{page_func_line}"
@@ -110,16 +106,16 @@ def _trace(func):
                 f.write(f"{running_man}\n")
         else:
             return None
-        return func(*a, **kw)
+        return func(*args, **kwargs)
 
     return wrapped
 
 
 def letmego(cls):
     """
-    类装饰器
-    :param cls:
-    :return:
+    class decorator
+    :param cls: class object
+    :return: class object
     """
     for name, obj in inspect.getmembers(
             cls, lambda x: inspect.isfunction(x) or inspect.ismethod(x)
