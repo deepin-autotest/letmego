@@ -1,6 +1,6 @@
 
 class _Setting:
 
-    MARK_FILE = "running_man.txt"
+    RUNNING_MAN_FILE = "_running_man.txt"
 
 setting = _Setting()

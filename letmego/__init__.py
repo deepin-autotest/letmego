@@ -1,10 +1,7 @@
 import inspect
-import logging
 import os
 import re
-import sys
 import threading
-import time
 import weakref
 from functools import wraps
 from letmego.conf import setting
@@ -103,12 +100,13 @@ def _trace(func):
         if case_class_name:
             case_class_name = case_class_name[0]
         running_man = f"{case_filename}-{case_class_name}-{case_func_name}-{page_class_name}-{page_func_name}-{page_func_line}"
+        running_man_file = os.path.expanduser(setting.RUNNING_MAN_FILE)
         marks = []
-        if os.path.exists(os.path.expanduser(setting.MARK_FILE)):
-            with open(os.path.expanduser(setting.MARK_FILE), "r", encoding="utf-8") as f:
+        if os.path.exists(running_man_file):
+            with open(running_man_file, "r", encoding="utf-8") as f:
                 marks = f.readlines()
         if f"{running_man}\n" not in marks:
-            with open(os.path.expanduser(setting.MARK_FILE), "a+", encoding="utf-8") as f:
+            with open(running_man_file, "a+", encoding="utf-8") as f:
                 f.write(f"{running_man}\n")
         else:
             return None
