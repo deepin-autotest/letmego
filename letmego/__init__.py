@@ -6,6 +6,8 @@ import weakref
 from functools import wraps
 from letmego.conf import setting
 
+_running_man_file = os.path.expanduser(setting.RUNNING_MAN_FILE)
+
 
 class Singleton(type):
     """Singleton"""
@@ -30,7 +32,8 @@ class Singleton(type):
 
 
 def is_static_method(klass_or_instance, attr: str):
-    """Test if a value of a class is static method.
+    """
+    Test if a value of a class is static method
     :param klass_or_instance: the class
     :param attr: attribute name
     """
@@ -88,13 +91,12 @@ def _trace(func):
         if case_class_name:
             case_class_name = case_class_name[0]
         running_man = f"{case_filename}-{case_class_name}-{case_func_name}-{page_class_name}-{page_func_name}-{page_func_line}"
-        running_man_file = os.path.expanduser(setting.RUNNING_MAN_FILE)
         marks = []
-        if os.path.exists(running_man_file):
-            with open(running_man_file, "r", encoding="utf-8") as f:
+        if os.path.exists(_running_man_file):
+            with open(_running_man_file, "r", encoding="utf-8") as f:
                 marks = f.readlines()
         if f"{running_man}\n" not in marks:
-            with open(running_man_file, "a+", encoding="utf-8") as f:
+            with open(_running_man_file, "a+", encoding="utf-8") as f:
                 f.write(f"{running_man}\n")
         else:
             return None
@@ -106,6 +108,13 @@ def _trace(func):
 def letmego(cls):
     """
     class decorator
+    example:
+    ===============================
+    @letmego
+    class Page:
+        def click_some_element():
+            ...
+    ===============================
     :param cls: class object
     :return: class object
     """
@@ -140,15 +149,18 @@ WantedBy=multi-user.target
 
 def register_autostart_service(user: str, working_directory: str, cmd: str):
     """
+    register autostart service
     example:
-        register_autostart_service(
-            user="uos",
-            working_directory="/home/uos/",
-            cmd="ls"
-        )
-    :param user:
-    :param working_directory:
-    :param cmd:
+    ===================================
+    register_autostart_service(
+        user="uos",
+        working_directory="/home/uos/",
+        cmd="ls"
+    )
+    ===================================
+    :param user: os user
+    :param working_directory: working directory
+    :param cmd: cmd
     :return:
     """
     service = _service_template.format(user=user, working_directory=working_directory, cmd=cmd)
@@ -166,9 +178,35 @@ def clean_running_man():
     os.system(f"rm -rf {setting.RUNNING_MAN_FILE}")
 
 
+def write_testcase_running_status(item):
+    """
+    write testcase running status
+    :param item: pytest item object
+    :return:
+    """
+    with open(_running_man_file, "a+", encoding="utf-8") as f:
+        f.write(f"{item.nodeid}\n")
+
+
+def read_testcase_running_status(item):
+    """
+    read testcase running status
+    :param item: pytest item object
+    :return:
+    """
+    if os.path.exists(_running_man_file):
+        with open(_running_man_file, "r", encoding="utf-8") as f:
+            marks = f.readlines()
+        if f"{item.nodeid}\n" in marks:
+            # already executed
+            return True
+    # not executed
+    return False
+
+
 if __name__ == '__main__':
     register_autostart_service(
         user="uos",
-        working_directory="/home/uos/",
-        cmd="ls"
+        working_directory="/home/uos/youqu/",
+        cmd="pytest ."
     )

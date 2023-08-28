@@ -68,8 +68,11 @@ letmego（任我行）是一个控制 Python 函数执行的方案，目前主�
 from letmego import register_autostart_service
 
 register_autostart_service(
+    # 系统当前运行用户的用户名
     user="uos",
+    # 自动化程序所在的路径
     working_directory="/home/uos/youqu/",
+    # 自动化程序的执行命令
     cmd="pytest ."
 )
 ```
@@ -124,3 +127,32 @@ register_autostart_service(
 - TestDemo 是用例类类名；
 - test_001 是用例函数的函数名称；
 - click_some_element_self 是用例步骤函数，它来源于 page 模块的 Page 类，而且可以看出它在第 10 行和第 14 行都有调用；
+
+### 用例执行状态的处理
+
+以前面的描述处理单条用例执行时的逻辑；
+
+那么，多条用例之间如何进行衔接处理呢，而且还有个问题，就是前面执行过的用例，第二次执行的时候实际没有执行的内容，但用例结果是 PASS，而有可能前面的用例执行状态是 FAILED，也就是说对于用例的执行状态如何处理？
+
+这部分需要在自动化测试框架里面做逻辑处理，letmego 里面提供相应的方法，框架负责调用即可。
+
+处理逻辑如下：
+
+（1）每条用例执行结束之后，在标签记录文件里面记录用例的执行状态，这里的状态不代表用例成功或失败，而仅仅是标识此用例是否已经被执行过；
+
+```py
+from letmego import write_testcase_running_status
+
+write_testcase_running_status(item)
+```
+
+（2）在用例收集阶段读取标签记录文件里面，并将已经记录到文件中的用例，剔除用例集。
+
+```py
+from letmego import read_testcase_running_status
+
+read_testcase_running_status(item)
+# 返回 True 说明用例已经执行过，False 说明未被执行过；
+```
+
+经过以上逻辑处理，确保第二次执行时，前面已经执行完成的用例不用再执行，直接从涉及重启步骤的那条用例开始执行，根据前面的运行流程图，重启步骤及前面的步骤直接跳过，后续步骤将正常执行。

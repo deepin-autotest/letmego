@@ -7,7 +7,7 @@ name = "letmego"
 authors = [
   { name="mikigo", email="huangmingqiang@uniontech.com" },
 ]
-version = "0.9.1"
+version = "0.9.3"
 description = "letmego"
 readme = "README.md"
 requires-python = ">=3.7"
@@ -19,9 +19,6 @@ classifiers = [
 
 dependencies = [
 ]
-
-
-#dynamic = ["version"]
 
 [project.optional-dependencies]
 test = [
