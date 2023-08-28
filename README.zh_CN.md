@@ -1,4 +1,4 @@
-# letmego（任我行）
+# Let Me Go（任我行）
 
 ![PyPI](https://img.shields.io/pypi/v/letmego?style=flat&logo=github&link=https%3A%2F%2Fpypi.org%2Fproject%2Fletmego%2F)
 ![PyPI - License](https://img.shields.io/pypi/l/letmego)
