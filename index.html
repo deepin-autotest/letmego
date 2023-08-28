@@ -557,8 +557,11 @@
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">letmego</span> <span class="kn">import</span> <span class="n">register_autostart_service</span>
 
 <span class="n">register_autostart_service</span><span class="p">(</span>
+    <span class="c1"># 系统当前运行用户的用户名</span>
     <span class="n">user</span><span class="o">=</span><span class="s2">&quot;uos&quot;</span><span class="p">,</span>
+    <span class="c1"># 自动化程序所在的路径</span>
     <span class="n">working_directory</span><span class="o">=</span><span class="s2">&quot;/home/uos/youqu/&quot;</span><span class="p">,</span>
+    <span class="c1"># 自动化程序的执行命令</span>
     <span class="n">cmd</span><span class="o">=</span><span class="s2">&quot;pytest .&quot;</span>
 <span class="p">)</span>
 </code></pre></div>
@@ -612,7 +615,16 @@
 <p>这部分需要在自动化测试框架里面做逻辑处理，letmego 里面提供相应的方法，框架负责调用即可。</p>
 <p>处理逻辑如下：</p>
 <p>（1）每条用例执行结束之后，在标签记录文件里面记录用例的执行状态，这里的状态不代表用例成功或失败，而仅仅是标识此用例是否已经被执行过；</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">letmego</span> <span class="kn">import</span> <span class="n">write_testcase_running_status</span>
+
+<span class="n">write_testcase_running_status</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+</code></pre></div>
 <p>（2）在用例收集阶段读取标签记录文件里面，并将已经记录到文件中的用例，剔除用例集。</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">letmego</span> <span class="kn">import</span> <span class="n">read_testcase_running_status</span>
+
+<span class="n">read_testcase_running_status</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+<span class="c1"># 返回 True 说明用例已经执行过，False 说明未被执行过；</span>
+</code></pre></div>
 <p>经过以上逻辑处理，确保第二次执行时，前面已经执行完成的用例不用再执行，直接从涉及重启步骤的那条用例开始执行，根据前面的运行流程图，重启步骤及前面的步骤直接跳过，后续步骤将正常执行。</p>
 
 
