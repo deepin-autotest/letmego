@@ -1,7 +1,5 @@
 # Let Me Go
 
-> letmego.
-
 ![PyPI](https://img.shields.io/pypi/v/letmego?style=flat&logo=github&link=https%3A%2F%2Fpypi.org%2Fproject%2Fletmego%2F)
 ![PyPI - License](https://img.shields.io/pypi/l/letmego)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/letmego)
@@ -14,21 +12,15 @@
 
 English | [简体中文](README.zh_CN.md) 
 
-letmego is 
+letmego is a solution to control the execution of Python functions. At present, the main application scenario is in the scenario where the automated test program has to be interrupted, such as the restart scenario. It is necessary to restart the machine during the execution of the steps of the automated use case. After the machine restarts, it can be restarted. Continues the functionality performed by the use case step immediately before the restart.
 
 ## Installation
 
 - Installing from PyPI:
 
   ```shel
-  sudo pip3 install letmego
+  pip3 install letmego
   ```
-
-## Usage
-
-```sh
-xx
-```
 
 ## Documentations
 

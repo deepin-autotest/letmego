@@ -31,18 +31,12 @@ class Singleton(type):
 
 def is_static_method(klass_or_instance, attr: str):
     """Test if a value of a class is static method.
-    example::
-        class MyClass(object):
-            @staticmethod
-            def add_two(a, b):
-                return a + b
     :param klass_or_instance: the class
     :param attr: attribute name
     """
     if attr.startswith("_"):
         return False
     value = getattr(klass_or_instance, attr)
-    # is a function or method
     if inspect.isroutine(value):
         if isinstance(value, property):
             return False
@@ -54,10 +48,8 @@ def is_static_method(klass_or_instance, attr: str):
                 args.append(name)
             elif kind is inspect._ParameterKind.POSITIONAL_OR_KEYWORD:
                 args.append(name)
-        # Can't be a regular method, must be a static method
         if len(args) == 0:
             return True
-        # must be a regular method
         if args[0] == "self":
             return False
         return inspect.isfunction(value)
@@ -91,7 +83,8 @@ def _trace(func):
         page_func_name = func.__name__
         page_func_line = str(frame.f_back.f_lineno)
         case_func_name = str(frame.f_back.f_code.co_name)
-        case_class_name = re.findall(rf"<.*?\.{setting.TARGET_FILE_STARTWITH}.*?\.(.*?) object at .*?>", str(frame.f_back.f_locals.get("self")))
+        case_class_name = re.findall(rf"<.*?\.{setting.TARGET_FILE_STARTSWITH}.*?\.(.*?) object at .*?>",
+                                     str(frame.f_back.f_locals.get("self")))
         if case_class_name:
             case_class_name = case_class_name[0]
         running_man = f"{case_filename}-{case_class_name}-{case_func_name}-{page_class_name}-{page_func_name}-{page_func_line}"
@@ -127,3 +120,54 @@ def letmego(cls):
             setattr(cls, name, _trace(obj))
             setattr(getattr(cls, name), "__letmego", True)
     return cls
+
+
+_service_template = """[Unit]
+Description=Test Service
+After=multi-user.target
+
+[Service]
+User={user}
+Group={user}
+Type=idle
+WorkingDirectory={working_directory}
+ExecStart={cmd}
+
+[Install]
+WantedBy=multi-user.target
+"""
+
+
+def register_autostart_service(user: str, working_directory: str, cmd: str):
+    """
+    example:
+        register_autostart_service(
+            user="uos",
+            working_directory="/home/uos/",
+            cmd="ls"
+        )
+    :param user:
+    :param working_directory:
+    :param cmd:
+    :return:
+    """
+    service = _service_template.format(user=user, working_directory=working_directory, cmd=cmd)
+    service_file = f"/tmp/{setting.PROJECT_NAME}.service"
+    with open(service_file, "w", encoding="utf-8") as f:
+        f.write(service)
+    os.system(f"echo '{setting.PASSWORD}' | sudo -S mv {service_file} /lib/systemd/system/")
+    os.system(f"echo '{setting.PASSWORD}' | sudo -S chmod 644 /lib/systemd/system/{setting.PROJECT_NAME}.service")
+    os.system(f"echo '{setting.PASSWORD}' | sudo -S systemctl daemon-reload")
+    os.system(f"echo '{setting.PASSWORD}' | sudo -S systemctl enable {setting.PROJECT_NAME}.service")
+
+
+def clean_running_man():
+    """clean running man file"""
+    os.system(f"rm -rf {setting.RUNNING_MAN_FILE}")
+
+if __name__ == '__main__':
+    register_autostart_service(
+        user="uos",
+        working_directory="/home/uos/",
+        cmd="ls"
+    )
