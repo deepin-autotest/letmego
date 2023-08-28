@@ -494,6 +494,12 @@
 <h2 id="_2">使用<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>方法层：</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">letmego</span> <span class="kn">import</span> <span class="n">letmego</span>
+<span class="kn">from</span> <span class="nn">letmego.conf</span> <span class="kn">import</span> <span class="n">setting</span>
+
+<span class="c1"># 配置标签记录文件的路径，默认为：/tmp/_running_man.txt</span>
+<span class="n">setting</span><span class="o">.</span><span class="n">RUNNING_MAN_FILE</span> <span class="o">=</span> <span class="s2">&quot;./_running_man.txt&quot;</span>
+<span class="c1"># 配置操作系统的密码</span>
+<span class="n">setting</span><span class="o">.</span><span class="n">PASSWORD</span> <span class="o">=</span> <span class="s2">&quot;1&quot;</span>
 
 <span class="nd">@letmego</span>
 <span class="k">class</span> <span class="nc">Page</span><span class="p">:</span>
@@ -530,6 +536,9 @@
         <span class="n">Page</span><span class="p">()</span><span class="o">.</span><span class="n">click_some_element_self</span><span class="p">()</span>
         <span class="c1"># 和 11 行相同的步骤</span>
         <span class="n">Page</span><span class="p">()</span><span class="o">.</span><span class="n">click_some_element_cls</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">pytest</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
 </code></pre></div>
 <p>测试用例首次执行，执行结果如下：</p>
 <p><img alt="img" src="img/3.png" /></p>
@@ -602,6 +611,9 @@
         <span class="n">Page</span><span class="p">()</span><span class="o">.</span><span class="n">click_some_element_self</span><span class="p">()</span>
         <span class="c1"># 和 11 行相同的步骤</span>
         <span class="n">Page</span><span class="p">()</span><span class="o">.</span><span class="n">click_some_element_cls</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">pytest</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
 </code></pre></div>
 <ul>
 <li>test.py 是用例文件，它在操作系统中是存在一个路径的；</li>
