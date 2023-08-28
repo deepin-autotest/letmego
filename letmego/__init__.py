@@ -183,8 +183,7 @@ def write_testcase_running_status(item):
     :param item: pytest item object
     :return:
     """
-    running_man_file = os.path.expanduser(setting.RUNNING_MAN_FILE)
-    with open(running_man_file, "a+", encoding="utf-8") as f:
+    with open(os.path.expanduser(setting.RUNNING_MAN_FILE), "a+", encoding="utf-8") as f:
         f.write(f"{item.nodeid}\n")
 
 
