@@ -1,5 +1,4 @@
 from letmego import letmego
-# import inspect
 
 @letmego
 class Page:

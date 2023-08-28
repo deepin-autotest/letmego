@@ -165,6 +165,7 @@ def clean_running_man():
     """clean running man file"""
     os.system(f"rm -rf {setting.RUNNING_MAN_FILE}")
 
+
 if __name__ == '__main__':
     register_autostart_service(
         user="uos",
