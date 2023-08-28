@@ -14,3 +14,6 @@ class TestDemo:
         Page().click_some_element_self()
         # 和 11 行相同的步骤
         Page().click_some_element_cls()
+
+if __name__ == '__main__':
+    pytest.main()

@@ -6,8 +6,6 @@ import weakref
 from functools import wraps
 from letmego.conf import setting
 
-_running_man_file = os.path.expanduser(setting.RUNNING_MAN_FILE)
-
 
 class Singleton(type):
     """Singleton"""
@@ -92,11 +90,12 @@ def _trace(func):
             case_class_name = case_class_name[0]
         running_man = f"{case_filename}-{case_class_name}-{case_func_name}-{page_class_name}-{page_func_name}-{page_func_line}"
         marks = []
-        if os.path.exists(_running_man_file):
-            with open(_running_man_file, "r", encoding="utf-8") as f:
+        running_man_file = os.path.expanduser(setting.RUNNING_MAN_FILE)
+        if os.path.exists(running_man_file):
+            with open(running_man_file, "r", encoding="utf-8") as f:
                 marks = f.readlines()
         if f"{running_man}\n" not in marks:
-            with open(_running_man_file, "a+", encoding="utf-8") as f:
+            with open(running_man_file, "a+", encoding="utf-8") as f:
                 f.write(f"{running_man}\n")
         else:
             return None
@@ -184,7 +183,8 @@ def write_testcase_running_status(item):
     :param item: pytest item object
     :return:
     """
-    with open(_running_man_file, "a+", encoding="utf-8") as f:
+    running_man_file = os.path.expanduser(setting.RUNNING_MAN_FILE)
+    with open(running_man_file, "a+", encoding="utf-8") as f:
         f.write(f"{item.nodeid}\n")
 
 
@@ -194,8 +194,9 @@ def read_testcase_running_status(item):
     :param item: pytest item object
     :return:
     """
-    if os.path.exists(_running_man_file):
-        with open(_running_man_file, "r", encoding="utf-8") as f:
+    running_man_file = os.path.expanduser(setting.RUNNING_MAN_FILE)
+    if os.path.exists(running_man_file):
+        with open(running_man_file, "r", encoding="utf-8") as f:
             marks = f.readlines()
         if f"{item.nodeid}\n" in marks:
             # already executed
