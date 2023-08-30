@@ -32,7 +32,7 @@ letmego（任我行）是一个控制 Python 函数执行的方案，目前主�
 
 同时会生成标签文件：
 
-`_running_man.txt`
+`_running_man.log`
 
 ```python
 {!../test/_running_man.log!}

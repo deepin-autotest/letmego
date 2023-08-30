@@ -1,6 +1,6 @@
 import letmego
 
-# 配置标签记录文件的路径，默认为：/tmp/_running_man.txt
+# 配置标签记录文件的路径，默认为：/tmp/_running_man.log
 letmego.conf.setting.RUNNING_MAN_FILE = "./_running_man.log"
 # 配置操作系统的密码
 letmego.conf.setting.PASSWORD = "1"
