@@ -1,12 +1,12 @@
-from letmego import letmego
-from letmego.conf import setting
+import letmego
 
 # 配置标签记录文件的路径，默认为：/tmp/_running_man.txt
-setting.RUNNING_MAN_FILE = "./_running_man.txt"
+letmego.conf.setting.RUNNING_MAN_FILE = "./_running_man.log"
 # 配置操作系统的密码
-setting.PASSWORD = "1"
+letmego.conf.setting.PASSWORD = "1"
 
-@letmego
+
+@letmego.mark
 class Page:
 
     def click_some_element_self(self):

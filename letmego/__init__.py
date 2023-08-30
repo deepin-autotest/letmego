@@ -104,7 +104,7 @@ def _trace(func):
     return wrapped
 
 
-def letmego(cls):
+def mark(cls):
     """
     class decorator
     example:
@@ -149,6 +149,7 @@ WantedBy=multi-user.target
 def register_autostart_service(user: str, working_directory: str, cmd: str):
     """
     register autostart service
+    need password
     example:
     ===================================
     register_autostart_service(
@@ -171,6 +172,13 @@ def register_autostart_service(user: str, working_directory: str, cmd: str):
     os.system(f"echo '{setting.PASSWORD}' | sudo -S systemctl daemon-reload")
     os.system(f"echo '{setting.PASSWORD}' | sudo -S systemctl enable {setting.PROJECT_NAME}.service")
 
+def unregister_autostart_service():
+    """
+    register autostart service
+    need password
+    :return: None
+    """
+    os.system(f"cho '{setting.PASSWORD}' | sudo -S rm -rf /lib/systemd/system/{setting.PROJECT_NAME}.service")
 
 def clean_running_man():
     """clean running man file"""

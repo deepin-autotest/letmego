@@ -35,7 +35,7 @@ letmego（任我行）是一个控制 Python 函数执行的方案，目前主�
 `_running_man.txt`
 
 ```python
-{!../test/_running_man.txt!}
+{!../test/_running_man.log!}
 ```
 
 再次执行用例，测试用例实际没有执行任何东西：
@@ -65,9 +65,9 @@ letmego（任我行）是一个控制 Python 函数执行的方案，目前主�
 将自动化用例执行程序注册到开机自启服务中，确保用例执行过程中，机器重启后程序能自动的被拉起执行。
 
 ```python
-from letmego import register_autostart_service
+import letmego
 
-register_autostart_service(
+letmego.register_autostart_service(
     # 系统当前运行用户的用户名
     user="uos",
     # 自动化程序所在的路径
@@ -141,17 +141,17 @@ register_autostart_service(
 （1）每条用例执行结束之后，在标签记录文件里面记录用例的执行状态，这里的状态不代表用例成功或失败，而仅仅是标识此用例是否已经被执行过；
 
 ```py
-from letmego import write_testcase_running_status
+import letmego
 
-write_testcase_running_status(item)
+letmego.write_testcase_running_status(item)
 ```
 
 （2）在用例收集阶段读取标签记录文件里面，并将已经记录到文件中的用例，剔除用例集。
 
 ```py
-from letmego import read_testcase_running_status
+import letmego
 
-read_testcase_running_status(item)
+letmego.read_testcase_running_status(item)
 # 返回 True 说明用例已经执行过，False 说明未被执行过；
 ```
 
