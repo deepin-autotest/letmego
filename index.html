@@ -493,15 +493,15 @@
 </code></pre></div>
 <h2 id="_2">使用<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>方法层：</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">letmego</span> <span class="kn">import</span> <span class="n">letmego</span>
-<span class="kn">from</span> <span class="nn">letmego.conf</span> <span class="kn">import</span> <span class="n">setting</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">letmego</span>
 
 <span class="c1"># 配置标签记录文件的路径，默认为：/tmp/_running_man.txt</span>
-<span class="n">setting</span><span class="o">.</span><span class="n">RUNNING_MAN_FILE</span> <span class="o">=</span> <span class="s2">&quot;./_running_man.txt&quot;</span>
+<span class="n">letmego</span><span class="o">.</span><span class="n">conf</span><span class="o">.</span><span class="n">setting</span><span class="o">.</span><span class="n">RUNNING_MAN_FILE</span> <span class="o">=</span> <span class="s2">&quot;./_running_man.log&quot;</span>
 <span class="c1"># 配置操作系统的密码</span>
-<span class="n">setting</span><span class="o">.</span><span class="n">PASSWORD</span> <span class="o">=</span> <span class="s2">&quot;1&quot;</span>
+<span class="n">letmego</span><span class="o">.</span><span class="n">conf</span><span class="o">.</span><span class="n">setting</span><span class="o">.</span><span class="n">PASSWORD</span> <span class="o">=</span> <span class="s2">&quot;1&quot;</span>
 
-<span class="nd">@letmego</span>
+
+<span class="nd">@letmego</span><span class="o">.</span><span class="n">mark</span>
 <span class="k">class</span> <span class="nc">Page</span><span class="p">:</span>
 
     <span class="k">def</span> <span class="nf">click_some_element_self</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -544,11 +544,7 @@
 <p><img alt="img" src="img/3.png" /></p>
 <p>同时会生成标签文件：</p>
 <p><code>_running_man.txt</code></p>
-<div class="highlight"><pre><span></span><code><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">mikigo</span><span class="o">/</span><span class="n">github</span><span class="o">/</span><span class="n">letmego</span><span class="o">/</span><span class="n">test</span><span class="o">/</span><span class="n">test</span><span class="o">.</span><span class="n">py</span><span class="o">-</span><span class="n">TestDemo</span><span class="o">-</span><span class="n">test_001</span><span class="o">-</span><span class="n">Page</span><span class="o">-</span><span class="n">click_some_element_self</span><span class="o">-</span><span class="mi">10</span>
-<span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">mikigo</span><span class="o">/</span><span class="n">github</span><span class="o">/</span><span class="n">letmego</span><span class="o">/</span><span class="n">test</span><span class="o">/</span><span class="n">test</span><span class="o">.</span><span class="n">py</span><span class="o">-</span><span class="n">TestDemo</span><span class="o">-</span><span class="n">test_001</span><span class="o">-</span><span class="n">Page</span><span class="o">-</span><span class="n">click_some_element_cls</span><span class="o">-</span><span class="mi">11</span>
-<span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">mikigo</span><span class="o">/</span><span class="n">github</span><span class="o">/</span><span class="n">letmego</span><span class="o">/</span><span class="n">test</span><span class="o">/</span><span class="n">test</span><span class="o">.</span><span class="n">py</span><span class="o">-</span><span class="n">TestDemo</span><span class="o">-</span><span class="n">test_001</span><span class="o">-</span><span class="n">Page</span><span class="o">-</span><span class="n">click_some_element_static</span><span class="o">-</span><span class="mi">12</span>
-<span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">mikigo</span><span class="o">/</span><span class="n">github</span><span class="o">/</span><span class="n">letmego</span><span class="o">/</span><span class="n">test</span><span class="o">/</span><span class="n">test</span><span class="o">.</span><span class="n">py</span><span class="o">-</span><span class="n">TestDemo</span><span class="o">-</span><span class="n">test_001</span><span class="o">-</span><span class="n">Page</span><span class="o">-</span><span class="n">click_some_element_self</span><span class="o">-</span><span class="mi">14</span>
-<span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">mikigo</span><span class="o">/</span><span class="n">github</span><span class="o">/</span><span class="n">letmego</span><span class="o">/</span><span class="n">test</span><span class="o">/</span><span class="n">test</span><span class="o">.</span><span class="n">py</span><span class="o">-</span><span class="n">TestDemo</span><span class="o">-</span><span class="n">test_001</span><span class="o">-</span><span class="n">Page</span><span class="o">-</span><span class="n">click_some_element_cls</span><span class="o">-</span><span class="mi">16</span>
+<div class="highlight"><pre><span></span><code>
 </code></pre></div>
 <p>再次执行用例，测试用例实际没有执行任何东西：</p>
 <p><img alt="img" src="img/4.png" /></p>
@@ -563,9 +559,9 @@
 <p>图（一）用例步骤中重启中断后恢复执行的流程</p>
 <h3 id="_4">注册开机自启服务<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <p>将自动化用例执行程序注册到开机自启服务中，确保用例执行过程中，机器重启后程序能自动的被拉起执行。</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">letmego</span> <span class="kn">import</span> <span class="n">register_autostart_service</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">letmego</span>
 
-<span class="n">register_autostart_service</span><span class="p">(</span>
+<span class="n">letmego</span><span class="o">.</span><span class="n">register_autostart_service</span><span class="p">(</span>
     <span class="c1"># 系统当前运行用户的用户名</span>
     <span class="n">user</span><span class="o">=</span><span class="s2">&quot;uos&quot;</span><span class="p">,</span>
     <span class="c1"># 自动化程序所在的路径</span>
@@ -627,14 +623,14 @@
 <p>这部分需要在自动化测试框架里面做逻辑处理，letmego 里面提供相应的方法，框架负责调用即可。</p>
 <p>处理逻辑如下：</p>
 <p>（1）每条用例执行结束之后，在标签记录文件里面记录用例的执行状态，这里的状态不代表用例成功或失败，而仅仅是标识此用例是否已经被执行过；</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">letmego</span> <span class="kn">import</span> <span class="n">write_testcase_running_status</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">letmego</span>
 
-<span class="n">write_testcase_running_status</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+<span class="n">letmego</span><span class="o">.</span><span class="n">write_testcase_running_status</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
 </code></pre></div>
 <p>（2）在用例收集阶段读取标签记录文件里面，并将已经记录到文件中的用例，剔除用例集。</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">letmego</span> <span class="kn">import</span> <span class="n">read_testcase_running_status</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">letmego</span>
 
-<span class="n">read_testcase_running_status</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+<span class="n">letmego</span><span class="o">.</span><span class="n">read_testcase_running_status</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
 <span class="c1"># 返回 True 说明用例已经执行过，False 说明未被执行过；</span>
 </code></pre></div>
 <p>经过以上逻辑处理，确保第二次执行时，前面已经执行完成的用例不用再执行，直接从涉及重启步骤的那条用例开始执行，根据前面的运行流程图，重启步骤及前面的步骤直接跳过，后续步骤将正常执行。</p>
