@@ -526,7 +526,7 @@
 
 
 <h1 id="let-me-go">Let Me Go<a class="headerlink" href="#let-me-go" title="Permanent link">&para;</a></h1>
-<p>letmego（任我行）是一个控制 Python 函数执行的方案，目前主要应用场景是在自动化测试程序遇到不得不中断的场景下，如重启场景，需要实现自动化用例步骤执行过程中重启机器，机器重新启动之后，能再次继续紧接着重启前的用例步骤执行的功能。</p>
+<p>任我行（letmego）是一个控制 Python 函数执行的技术方案，目前主要应用场景是在自动化测试程序遇到不得不中断的场景下，如重启场景，需要实现自动化用例步骤执行过程中重启机器，机器重新启动之后，能再次继续紧接着重启前的用例步骤执行的功能。</p>
 <h2 id="_1">安装<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <ul>
 <li>从 PyPI 安装:</li>
@@ -692,7 +692,7 @@
 <li>测试报告整合；</li>
 </ul>
 <p>这里面“记录执行次数”是存在重跑机制的情况下需要处理的，而且由于重跑的次数是由框架来控制的，因此需要将框架指定的重跑次数，传递给 letmego 中，从而在每个用例步骤才能记录它们是第几次执行的；</p>
-<p>以上这些这些一定需要小心处理，从处理难度上讲甚至超过了 letmego 本身的实现难度，你必须对自动化测试框架每个阶段的执行逻辑了若指掌；</p>
+<p>以上这些一定需要小心处理，从处理难度上讲甚至超过了 letmego 本身的实现难度，你必须对自动化测试框架每个阶段的执行逻辑了若指掌；</p>
 <p>如果你是使用的 <a href="https://github.com/linuxdeepin/deepin-autotest-framework">有趣（YouQu）</a> 那就可以放心使用，此框架已经完美集成了本技术方案；</p>
 <h2 id="_10">其他容易忽视但很重要的事项<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
 <ul>
@@ -701,7 +701,7 @@
 <li>重启步骤最好是一个简单的reboot操作，不建议在组合步骤中间插入一个reboot；</li>
 </ul>
 <h2 id="demo">Demo<a class="headerlink" href="#demo" title="Permanent link">&para;</a></h2>
-<p>我们提供了一个 <a href="https://github.com/mikigo/letmego/tree/demo">Demo</a> ，包含了 letmego 的完整应用过程，如有问题，欢迎提交 issues~~</p>
+<p>我们提供了一个 <a href="https://github.com/mikigo/letmego/tree/demo">Demo</a> ，包含了 letmego 的完整应用过程以及各关键细节的处理方法，如有问题，欢迎提交 issues~~</p>
 
 
   
