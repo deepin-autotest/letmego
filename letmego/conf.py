@@ -9,5 +9,7 @@ class _Setting:
     TARGET_FILE_STARTSWITH = "test"
     # 默认操作系统的密码
     PASSWORD = "1"
+    # 第几次执行
+    EXECUTION_COUNT = None
 
 setting = _Setting()

@@ -80,15 +80,26 @@ def _trace(func):
             pass
         frame = inspect.currentframe()
         case_filename = str(frame.f_back.f_code.co_filename)
+        if not case_filename.split("/")[-1].startswith("test"):
+            return func(*args, **kwargs)
         page_class_name = inspect._findclass(func).__name__
+        page_func_name = func.__name__
+        if page_func_name == "__init__":
+            return func(*args, **kwargs)
         page_func_name = func.__name__
         page_func_line = str(frame.f_back.f_lineno)
         case_func_name = str(frame.f_back.f_code.co_name)
-        case_class_name = re.findall(rf"<.*?\.{setting.TARGET_FILE_STARTSWITH}.*?\.(.*?) object at .*?>",
-                                     str(frame.f_back.f_locals.get("self")))
+        case_class_name = re.findall(
+            rf"<.*?\.{setting.TARGET_FILE_STARTSWITH}.*?\.(.*?) object at .*?>",
+            str(frame.f_back.f_locals.get("self"))
+        )
         if case_class_name:
             case_class_name = case_class_name[0]
-        running_man = f"{case_filename}-{case_class_name}-{case_func_name}-{page_class_name}-{page_func_name}-{page_func_line}"
+        running_man = (
+            f"{case_filename}-{case_class_name}-{case_func_name}-{page_class_name}-{page_func_name}-{page_func_line}"
+        )
+        if setting.EXECUTION_COUNT:
+            running_man = f"{running_man}-{setting.EXECUTION_COUNT}"
         marks = []
         running_man_file = os.path.expanduser(setting.RUNNING_MAN_FILE)
         if os.path.exists(running_man_file):
@@ -138,6 +149,7 @@ After=multi-user.target
 User={user}
 Group={user}
 Type=idle
+Environment=XDG_RUNTIME_DIR=/run/user/1000
 WorkingDirectory={working_directory}
 ExecStart={cmd}
 
@@ -172,6 +184,7 @@ def register_autostart_service(user: str, working_directory: str, cmd: str):
     os.system(f"echo '{setting.PASSWORD}' | sudo -S systemctl daemon-reload")
     os.system(f"echo '{setting.PASSWORD}' | sudo -S systemctl enable {setting.PROJECT_NAME}.service")
 
+
 def unregister_autostart_service():
     """
     register autostart service
@@ -179,6 +192,7 @@ def unregister_autostart_service():
     :return: None
     """
     os.system(f"cho '{setting.PASSWORD}' | sudo -S rm -rf /lib/systemd/system/{setting.PROJECT_NAME}.service")
+
 
 def clean_running_man():
     """clean running man file"""
@@ -192,10 +206,13 @@ def write_testcase_running_status(item):
     :return:
     """
     with open(os.path.expanduser(setting.RUNNING_MAN_FILE), "a+", encoding="utf-8") as f:
-        f.write(f"{item.nodeid}\n")
+        if hasattr(item, "execution_count"):
+            f.write(f"{item.nodeid}-{item.execution_count}\n")
+        else:
+            f.write(f"{item.nodeid}\n")
 
 
-def read_testcase_running_status(item):
+def read_testcase_running_status(item, reruns=None):
     """
     read testcase running status
     :param item: pytest item object
@@ -205,7 +222,10 @@ def read_testcase_running_status(item):
     if os.path.exists(running_man_file):
         with open(running_man_file, "r", encoding="utf-8") as f:
             marks = f.readlines()
-        if f"{item.nodeid}\n" in marks:
+        nodeid = f"{item.nodeid}\n"
+        if reruns:
+            nodeid = f"{item.nodeid}-{reruns + 1}\n"
+        if nodeid in marks:
             # already executed
             return True
     # not executed
