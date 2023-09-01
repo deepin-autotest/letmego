@@ -199,7 +199,7 @@ def clean_running_man():
     os.system(f"rm -rf {setting.RUNNING_MAN_FILE}")
 
 
-def write_testcase_running_status(item):
+def write_testcase_running_status(item, report=None):
     """
     write testcase running status
     :param item: pytest item object
@@ -207,7 +207,9 @@ def write_testcase_running_status(item):
     """
     with open(os.path.expanduser(setting.RUNNING_MAN_FILE), "a+", encoding="utf-8") as f:
         if hasattr(item, "execution_count"):
-            f.write(f"{item.nodeid}-{item.execution_count}\n")
+            if report is None:
+                raise ValueError
+            f.write(f"{item.nodeid}-{item.execution_count}-{str(report.outcome)}\n")
         else:
             f.write(f"{item.nodeid}\n")
 
@@ -222,12 +224,23 @@ def read_testcase_running_status(item, reruns=None):
     if os.path.exists(running_man_file):
         with open(running_man_file, "r", encoding="utf-8") as f:
             marks = f.readlines()
-        nodeid = f"{item.nodeid}\n"
         if reruns:
-            nodeid = f"{item.nodeid}-{reruns + 1}\n"
-        if nodeid in marks:
-            # already executed
-            return True
+            for i in range(reruns + 1):
+                nodeid_pass = f"{item.nodeid}-{i + 1}-passed\n"
+                if nodeid_pass in marks:
+                    # 如果其中有一次是passed，说明已经执行完了，返回True
+                    return True
+            nodeid_fail = f"{item.nodeid}-{reruns + 1}-failed\n"
+            if nodeid_fail in marks:
+                # 如果第最后一次执行已经失败了，说明已经执行完了，返回True
+                return True
+            # 其他情况返回False
+            return False
+        else:
+            nodeid = f"{item.nodeid}\n"
+            if nodeid in marks:
+                # already executed
+                return True
     # not executed
     return False
 

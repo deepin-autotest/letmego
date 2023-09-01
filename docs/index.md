@@ -143,7 +143,7 @@ letmego.register_autostart_service(
 ```py
 import letmego
 
-letmego.write_testcase_running_status(item)
+letmego.write_testcase_running_status(item, report)
 ```
 
 （2）在用例收集阶段读取标签记录文件里面，并将已经记录到文件中的用例，剔除用例集。
@@ -151,8 +151,34 @@ letmego.write_testcase_running_status(item)
 ```py
 import letmego
 
-letmego.read_testcase_running_status(item)
+letmego.read_testcase_running_status(item, reruns=None)
 # 返回 True 说明用例已经执行过，False 说明未被执行过；
 ```
 
 经过以上逻辑处理，确保第二次执行时，前面已经执行完成的用例不用再执行，直接从涉及重启步骤的那条用例开始执行，根据前面的运行流程图，重启步骤及前面的步骤直接跳过，后续步骤将正常执行。
+
+## 集成到自动化测试框架
+
+集成到框架中需要处理一下几个事情：
+
+- 注册自启服务；
+- 处理用例集；
+- 记录执行次数
+- 记录用例的执行状态；
+- 测试报告整合；
+
+这里面“记录执行次数”是存在重跑机制的情况下需要处理的，而且由于重跑的次数是由框架来控制的，因此需要将框架指定的重跑次数，传递给 letmego 中，从而在每个用例步骤才能记录它们是第几次执行的；
+
+以上这些这些一定需要小心处理，从处理难度上讲甚至超过了 letmego 本身的实现难度，你必须对自动化测试框架每个阶段的执行逻辑了若指掌；
+
+如果你是使用的 [有趣（YouQu）](https://github.com/linuxdeepin/deepin-autotest-framework) 那就可以放心使用，此框架已经完美集成了本技术方案；
+
+## 其他容易忽视但很重要的事项
+
+- 用例的前置和后置要写在同一个用例文件里面；
+- 重启步骤前面的步骤，如果有对象实例化的，需要处理实例化存在异常；
+- 重启步骤最好是一个简单的reboot操作，不建议在组合步骤中间插入一个reboot；
+
+## Demo
+
+我们提供了一个 [Demo](https://github.com/mikigo/letmego/tree/demo) ，包含了 letmego 的完整应用过程，如有问题，欢迎提交 issues~~
