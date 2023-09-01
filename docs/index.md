@@ -1,6 +1,6 @@
 # Let Me Go
 
-letmego（任我行）是一个控制 Python 函数执行的方案，目前主要应用场景是在自动化测试程序遇到不得不中断的场景下，如重启场景，需要实现自动化用例步骤执行过程中重启机器，机器重新启动之后，能再次继续紧接着重启前的用例步骤执行的功能。
+任我行（letmego）是一个控制 Python 函数执行的技术方案，目前主要应用场景是在自动化测试程序遇到不得不中断的场景下，如重启场景，需要实现自动化用例步骤执行过程中重启机器，机器重新启动之后，能再次继续紧接着重启前的用例步骤执行的功能。
 
 ## 安装
 
@@ -169,7 +169,7 @@ letmego.read_testcase_running_status(item, reruns=None)
 
 这里面“记录执行次数”是存在重跑机制的情况下需要处理的，而且由于重跑的次数是由框架来控制的，因此需要将框架指定的重跑次数，传递给 letmego 中，从而在每个用例步骤才能记录它们是第几次执行的；
 
-以上这些这些一定需要小心处理，从处理难度上讲甚至超过了 letmego 本身的实现难度，你必须对自动化测试框架每个阶段的执行逻辑了若指掌；
+以上这些一定需要小心处理，从处理难度上讲甚至超过了 letmego 本身的实现难度，你必须对自动化测试框架每个阶段的执行逻辑了若指掌；
 
 如果你是使用的 [有趣（YouQu）](https://github.com/linuxdeepin/deepin-autotest-framework) 那就可以放心使用，此框架已经完美集成了本技术方案；
 
@@ -181,4 +181,4 @@ letmego.read_testcase_running_status(item, reruns=None)
 
 ## Demo
 
-我们提供了一个 [Demo](https://github.com/mikigo/letmego/tree/demo) ，包含了 letmego 的完整应用过程，如有问题，欢迎提交 issues~~
+我们提供了一个 [Demo](https://github.com/mikigo/letmego/tree/demo) ，包含了 letmego 的完整应用过程以及各关键细节的处理方法，如有问题，欢迎提交 issues~~
