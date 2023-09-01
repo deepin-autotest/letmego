@@ -1,0 +1,2 @@
+# Hashes of file build rules.
+0a85457de60292af816c4aed9f0bd7fc CMakeFiles/wayland_autotool_autogen

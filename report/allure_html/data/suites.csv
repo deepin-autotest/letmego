@@ -1,0 +1,4 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"failed","Fri Sep 01 14:25:20 GMT+08:00 2023","Fri Sep 01 14:25:37 GMT+08:00 2023","16628","apps.autotest_deepin_music.case","test_music_001","TestMusic","","","test_music_001","右键菜单添加歌曲到我的歌单"
+"passed","Fri Sep 01 14:26:59 GMT+08:00 2023","Fri Sep 01 14:27:07 GMT+08:00 2023","7877","apps.autotest_deepin_music.case","test_music_003","TestMusic","","","test_music_003","专辑-列表字段"
+"passed","Fri Sep 01 14:26:33 GMT+08:00 2023","Fri Sep 01 14:26:50 GMT+08:00 2023","16718","apps.autotest_deepin_music.case","test_music_002","TestMusic","","","test_music_002","演唱者-列表字段"

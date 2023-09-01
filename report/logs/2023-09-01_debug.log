@@ -1,0 +1,126 @@
+aarch64-198: 09/01 14:26:31 | INFO | [pytest_sessionstart]: 当前系统显示协议为 Wayland.
+aarch64-198: 09/01 14:26:31 | ERROR | [_Config]: 应用库与基础框架对应版本不一致！
+aarch64-198: 09/01 14:26:32 | INFO | [pytest_runtest_setup]: 
+========== test_music_002 || 演唱者-列表字段 ========== [1/2]
+aarch64-198: 09/01 14:26:33 | DEBUG | [run_cmd]: ps -ef | grep deepin-music
+aarch64-198: 09/01 14:26:33 | DEBUG | [run_cmd]: uos       4064  2687  0 14:26 ?        00:00:00 /bin/sh -c ps -ef | grep deepin-music
+uos       4066  4064  0 14:26 ?        00:00:00 grep deepin-music
+aarch64-198: 09/01 14:26:33 | ERROR | [__init__]: uos       4064  2687  0 14:26 ?        00:00:00 /bin/sh -c ps -ef | grep deepin-music
+uos       4066  4064  0 14:26 ?        00:00:00 grep deepin-music
+aarch64-198: 09/01 14:26:33 | ERROR | [__init__]: 应用程序未启动,deepin-music
+aarch64-198: 09/01 14:26:33 | INFO | [pytest_runtest_makereport]: https://pms.uniontech.com/testcase-view-536935.html
+aarch64-198: 09/01 14:26:33 | INFO | [pytest_runtest_call]: ========== case body ==========
+aarch64-198: 09/01 14:26:34 | DEBUG | [run_cmd]: ps -ef | grep deepin-music
+aarch64-198: 09/01 14:26:34 | DEBUG | [run_cmd]: uos       4083  2687  0 14:26 ?        00:00:00 /bin/sh -c ps -ef | grep deepin-music
+uos       4085  4083  0 14:26 ?        00:00:00 grep deepin-music
+aarch64-198: 09/01 14:26:34 | ERROR | [__init__]: uos       4083  2687  0 14:26 ?        00:00:00 /bin/sh -c ps -ef | grep deepin-music
+uos       4085  4083  0 14:26 ?        00:00:00 grep deepin-music
+aarch64-198: 09/01 14:26:34 | ERROR | [__init__]: 应用程序未启动,deepin-music
+aarch64-198: 09/01 14:26:34 | INFO | [open_music_in_dock_by_attr]: 点击任务栏图标启动音乐
+aarch64-198: 09/01 14:26:34 | DEBUG | [get_process_status]: ps -aux | grep deepin-music | grep -v grep | grep -v pytest | grep -v python | grep -v asan | grep -v tee | grep -v ffmpeg | grep -v youqu
+aarch64-198: 09/01 14:26:34 | INFO | [click_and_focus_application_in_dock_by_attr]: 在dock启动应用
+aarch64-198: 09/01 14:26:34 | INFO | [click_application_in_dock_by_attr]: 点击 dock 栏应用图标
+aarch64-198: 09/01 14:26:34 | INFO | [send_link_to_dock]: 发送快捷方式到任务栏
+aarch64-198: 09/01 14:26:34 | DEBUG | [app_element]: (('Form_mainwindow',), {}) 获取元素对象 <[form | Form_mainwindow]>
+aarch64-198: 09/01 14:26:34 | DEBUG | [send_link_to_dock]: 发送<音乐>快捷方式到任务栏
+aarch64-198: 09/01 14:26:34 | DEBUG | [element_click]: 左键 点击元素 Btn_音乐
+aarch64-198: 09/01 14:26:34 | DEBUG | [app_element]: (('Btn_音乐',), {}) 获取元素对象 <[push button | Btn_音乐]>
+aarch64-198: 09/01 14:26:34 | DEBUG | [element_center]: 获取元素中心坐标 ((236.0, 1060.0))
+aarch64-198: 09/01 14:26:34 | DEBUG | [click]: 点击坐标 (236.0, 1060.0)
+aarch64-198: 09/01 14:26:36 | DEBUG | [click_application_in_dock_by_attr]: 在任务栏点击 <Btn_音乐> 按钮
+aarch64-198: 09/01 14:26:40 | INFO | [recovery_music_by_cmd]: 恢复音乐文件
+aarch64-198: 09/01 14:26:40 | DEBUG | [run_cmd]: echo '1'|sudo -S chmod -R 777 /home/uos/Music/bensound-sunny.mp3
+aarch64-198: 09/01 14:26:40 | DEBUG | [run_cmd]: 请输入密码验证成功
+aarch64-198: 09/01 14:26:40 | INFO | [first_add_music_by_ui]: 打开应用，添加音乐
+aarch64-198: 09/01 14:26:40 | INFO | [click_scan_text_in_music_by_ui]: 扫描
+aarch64-198: 09/01 14:26:42 | DEBUG | [press_key]: 点击键盘上指定的按键<esc>, 间隔<0.0>
+aarch64-198: 09/01 14:26:42 | DEBUG | [window_location_and_sizes]: 窗口左上角坐标 (425, 200),获取窗口大小 1070*680
+aarch64-198: 09/01 14:26:42 | DEBUG | [window_left_bottom_position]: 窗口左下角坐标 (425, 880)
+aarch64-198: 09/01 14:26:42 | DEBUG | [btn_center_by_left_bottom]: 左下角按钮的中心坐标 (866.0, 662.0)
+aarch64-198: 09/01 14:26:42 | DEBUG | [btn_center]: [扫描] 坐标：866.0, 662.0)
+aarch64-198: 09/01 14:26:42 | DEBUG | [move_to]: 鼠标移动至 ((866.0, 662.0), 速度：0.4)
+aarch64-198: 09/01 14:26:43 | DEBUG | [click]: 点击坐标 Point(x=866, y=662)
+aarch64-198: 09/01 14:26:44 | INFO | [click_singer_btn_in_music_by_ui]: 点击演唱者
+aarch64-198: 09/01 14:26:46 | DEBUG | [press_key]: 点击键盘上指定的按键<esc>, 间隔<0.0>
+aarch64-198: 09/01 14:26:46 | DEBUG | [window_left_top_position]: 窗口左上角坐标 (425, 200)
+aarch64-198: 09/01 14:26:46 | DEBUG | [btn_center_by_left_top]: 左上角按钮的中心坐标 (553.0, 358.0)
+aarch64-198: 09/01 14:26:46 | DEBUG | [btn_center]: [演唱者按钮] 坐标：553.0, 358.0)
+aarch64-198: 09/01 14:26:46 | DEBUG | [move_to]: 鼠标移动至 ((553.0, 358.0), 速度：0.4)
+aarch64-198: 09/01 14:26:47 | DEBUG | [click]: 点击坐标 Point(x=553, y=358)
+aarch64-198: 09/01 14:26:47 | INFO | [click_icon_mode_in_music_by_ui]: 矩阵模式
+aarch64-198: 09/01 14:26:48 | DEBUG | [press_key]: 点击键盘上指定的按键<esc>, 间隔<0.0>
+aarch64-198: 09/01 14:26:48 | DEBUG | [window_location_and_sizes]: 窗口左上角坐标 (425, 200),获取窗口大小 1070*680
+aarch64-198: 09/01 14:26:48 | DEBUG | [window_right_top_position]: 窗口右上角坐标 (1495, 200)
+aarch64-198: 09/01 14:26:48 | DEBUG | [btn_center_by_right_top]: 右上角按钮的中心坐标 (1385.0, 288.0)
+aarch64-198: 09/01 14:26:48 | DEBUG | [btn_center]: [矩阵按钮] 坐标：1385.0, 288.0)
+aarch64-198: 09/01 14:26:48 | DEBUG | [move_to]: 鼠标移动至 ((1385.0, 288.0), 速度：0.4)
+aarch64-198: 09/01 14:26:49 | DEBUG | [click]: 点击坐标 Point(x=1385, y=288)
+aarch64-198: 09/01 14:26:49 | INFO | [assert_image_exist]: 屏幕上匹配图片< ***t_deepin_music/case/assert_res/music_002 >
+aarch64-198: 09/01 14:26:50 | INFO | ***epin_music/case/assert_res/music_002.png | 坐标:(729, 399) | 相似度:99.56%
+aarch64-198: 09/01 14:26:50 | INFO | [pytest_runtest_makereport]: 运行结果: PASSED
+aarch64-198: 09/01 14:26:50 | INFO | [pytest_runtest_teardown]: ========== teardown ==========
+aarch64-198: 09/01 14:26:50 | INFO | [clean_music_app_by_cmd]: 删除音乐的数据库
+aarch64-198: 09/01 14:26:50 | INFO | [close_music_and_clean_sqlite_by_cmd]: 关闭音乐
+aarch64-198: 09/01 14:26:50 | INFO | [delete_music_sqlite_by_cmd]: 删除音乐的数据库
+aarch64-198: 09/01 14:26:50 | DEBUG | [run_cmd]: rm -rf /home/uos/.cache/deepin/deepin-music/mediameta.sqlite
+aarch64-198: 09/01 14:26:50 | INFO | [esc]: esc
+aarch64-198: 09/01 14:26:50 | DEBUG | [press_key]: 点击键盘上指定的按键<esc>, 间隔<0.0>
+aarch64-198: 09/01 14:26:50 | DEBUG | [sleep]: sleep 1 s [aarch64 * 1.5 = 1.5]
+aarch64-198: 09/01 14:26:51 | DEBUG | [clean_music]: Clean All
+aarch64-198: 09/01 14:26:52 | DEBUG | [run_cmd]: rm -rf ~/.config/deepin/dde-file-manager.json
+aarch64-198: 09/01 14:26:52 | INFO | [pytest_runtest_setup]: 
+========== test_music_003 || 专辑-列表字段 ========== [2/2]
+aarch64-198: 09/01 14:26:52 | INFO | [open_music_in_dock_by_attr]: 点击任务栏图标启动音乐
+aarch64-198: 09/01 14:26:52 | DEBUG | [get_process_status]: ps -aux | grep deepin-music | grep -v grep | grep -v pytest | grep -v python | grep -v asan | grep -v tee | grep -v ffmpeg | grep -v youqu
+aarch64-198: 09/01 14:26:52 | INFO | [click_and_focus_application_in_dock_by_attr]: 在dock启动应用
+aarch64-198: 09/01 14:26:52 | INFO | [click_application_in_dock_by_attr]: 点击 dock 栏应用图标
+aarch64-198: 09/01 14:26:52 | INFO | [send_link_to_dock]: 发送快捷方式到任务栏
+aarch64-198: 09/01 14:26:52 | DEBUG | [app_element]: (('Form_mainwindow',), {}) 获取元素对象 <[form | Form_mainwindow]>
+aarch64-198: 09/01 14:26:52 | DEBUG | [send_link_to_dock]: 发送<音乐>快捷方式到任务栏
+aarch64-198: 09/01 14:26:52 | DEBUG | [element_click]: 左键 点击元素 Btn_音乐
+aarch64-198: 09/01 14:26:52 | DEBUG | [app_element]: (('Btn_音乐',), {}) 获取元素对象 <[push button | Btn_音乐]>
+aarch64-198: 09/01 14:26:52 | DEBUG | [element_center]: 获取元素中心坐标 ((236.0, 1060.0))
+aarch64-198: 09/01 14:26:52 | DEBUG | [click]: 点击坐标 (236.0, 1060.0)
+aarch64-198: 09/01 14:26:52 | DEBUG | [click_application_in_dock_by_attr]: 在任务栏点击 <Btn_音乐> 按钮
+aarch64-198: 09/01 14:26:56 | INFO | [recovery_music_by_cmd]: 恢复音乐文件
+aarch64-198: 09/01 14:26:56 | DEBUG | [run_cmd]: echo '1'|sudo -S chmod -R 777 /home/uos/Music/bensound-sunny.mp3
+aarch64-198: 09/01 14:26:56 | DEBUG | [run_cmd]: 请输入密码验证成功
+aarch64-198: 09/01 14:26:56 | INFO | [first_add_music_by_ui]: 打开应用，添加音乐
+aarch64-198: 09/01 14:26:56 | INFO | [click_scan_text_in_music_by_ui]: 扫描
+aarch64-198: 09/01 14:26:58 | DEBUG | [press_key]: 点击键盘上指定的按键<esc>, 间隔<0.0>
+aarch64-198: 09/01 14:26:58 | DEBUG | [window_location_and_sizes]: 窗口左上角坐标 (425, 200),获取窗口大小 1070*680
+aarch64-198: 09/01 14:26:58 | DEBUG | [window_left_bottom_position]: 窗口左下角坐标 (425, 880)
+aarch64-198: 09/01 14:26:58 | DEBUG | [btn_center_by_left_bottom]: 左下角按钮的中心坐标 (866.0, 662.0)
+aarch64-198: 09/01 14:26:58 | DEBUG | [btn_center]: [扫描] 坐标：866.0, 662.0)
+aarch64-198: 09/01 14:26:58 | DEBUG | [move_to]: 鼠标移动至 ((866.0, 662.0), 速度：0.4)
+aarch64-198: 09/01 14:26:59 | DEBUG | [click]: 点击坐标 Point(x=866, y=662)
+aarch64-198: 09/01 14:26:59 | INFO | [pytest_runtest_makereport]: https://pms.uniontech.com/testcase-view-536910.html
+aarch64-198: 09/01 14:26:59 | INFO | [pytest_runtest_call]: ========== case body ==========
+aarch64-198: 09/01 14:26:59 | INFO | [click_cd_btn_in_music_by_ui]: 点击专辑
+aarch64-198: 09/01 14:27:01 | DEBUG | [press_key]: 点击键盘上指定的按键<esc>, 间隔<0.0>
+aarch64-198: 09/01 14:27:02 | DEBUG | [window_left_top_position]: 窗口左上角坐标 (425, 200)
+aarch64-198: 09/01 14:27:02 | DEBUG | [btn_center_by_left_top]: 左上角按钮的中心坐标 (553.0, 318.0)
+aarch64-198: 09/01 14:27:02 | DEBUG | [btn_center]: [专辑按钮] 坐标：553.0, 318.0)
+aarch64-198: 09/01 14:27:02 | DEBUG | [move_to]: 鼠标移动至 ((553.0, 318.0), 速度：0.4)
+aarch64-198: 09/01 14:27:03 | DEBUG | [click]: 点击坐标 Point(x=553, y=318)
+aarch64-198: 09/01 14:27:03 | INFO | [click_icon_mode_in_music_by_ui]: 矩阵模式
+aarch64-198: 09/01 14:27:05 | DEBUG | [press_key]: 点击键盘上指定的按键<esc>, 间隔<0.0>
+aarch64-198: 09/01 14:27:05 | DEBUG | [window_location_and_sizes]: 窗口左上角坐标 (425, 200),获取窗口大小 1070*680
+aarch64-198: 09/01 14:27:05 | DEBUG | [window_right_top_position]: 窗口右上角坐标 (1495, 200)
+aarch64-198: 09/01 14:27:05 | DEBUG | [btn_center_by_right_top]: 右上角按钮的中心坐标 (1385.0, 288.0)
+aarch64-198: 09/01 14:27:05 | DEBUG | [btn_center]: [矩阵按钮] 坐标：1385.0, 288.0)
+aarch64-198: 09/01 14:27:05 | DEBUG | [move_to]: 鼠标移动至 ((1385.0, 288.0), 速度：0.4)
+aarch64-198: 09/01 14:27:06 | DEBUG | [click]: 点击坐标 Point(x=1385, y=288)
+aarch64-198: 09/01 14:27:06 | INFO | [assert_image_exist]: 屏幕上匹配图片< ***t_deepin_music/case/assert_res/music_003 >
+aarch64-198: 09/01 14:27:07 | INFO | ***epin_music/case/assert_res/music_003.png | 坐标:(720, 402) | 相似度:99.43%
+aarch64-198: 09/01 14:27:07 | INFO | [pytest_runtest_makereport]: 运行结果: PASSED
+aarch64-198: 09/01 14:27:07 | INFO | [pytest_runtest_teardown]: ========== teardown ==========
+aarch64-198: 09/01 14:27:07 | INFO | [clean_music_app_by_cmd]: 删除音乐的数据库
+aarch64-198: 09/01 14:27:07 | INFO | [close_music_and_clean_sqlite_by_cmd]: 关闭音乐
+aarch64-198: 09/01 14:27:07 | INFO | [delete_music_sqlite_by_cmd]: 删除音乐的数据库
+aarch64-198: 09/01 14:27:07 | DEBUG | [run_cmd]: rm -rf /home/uos/.cache/deepin/deepin-music/mediameta.sqlite
+aarch64-198: 09/01 14:27:07 | INFO | [esc]: esc
+aarch64-198: 09/01 14:27:07 | DEBUG | [press_key]: 点击键盘上指定的按键<esc>, 间隔<0.0>
+aarch64-198: 09/01 14:27:08 | DEBUG | [sleep]: sleep 1 s [aarch64 * 1.5 = 1.5]
+aarch64-198: 09/01 14:27:09 | DEBUG | [clean_music]: Clean All
+aarch64-198: 09/01 14:27:10 | DEBUG | [run_cmd]: rm -rf ~/.config/deepin/dde-file-manager.json

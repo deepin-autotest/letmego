@@ -1,30 +1,64 @@
-# Let Me Go
+![](https://raw.githubusercontent.com/mikigo/pic/main/logo.png)
 
-![PyPI](https://img.shields.io/pypi/v/letmego?style=flat&logo=github&link=https%3A%2F%2Fpypi.org%2Fproject%2Fletmego%2F)
-![PyPI - License](https://img.shields.io/pypi/l/letmego)
-![PyPI - Python Version](https://img.shields.io/pypi/pyversions/letmego)
-![PyPI - Wheel](https://img.shields.io/pypi/wheel/letmego)
-![PyPI - Implementation](https://img.shields.io/pypi/implementation/letmego)
+# YouQu
 
-[![Downloads](https://static.pepy.tech/badge/letmego/week)](https://pepy.tech/project/letmego)
-[![Downloads](https://static.pepy.tech/badge/letmego/month)](https://pepy.tech/project/letmego)
-[![Downloads](https://static.pepy.tech/badge/letmego)](https://pepy.tech/project/letmego)
+> YouQu, a simple and powerful autotest framework.
+
+![PyPI](https://img.shields.io/pypi/v/youqu?style=flat&logo=github&link=https%3A%2F%2Fpypi.org%2Fproject%2Fyouqu%2F)
+![PyPI - License](https://img.shields.io/pypi/l/youqu)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/youqu)
+![PyPI - Wheel](https://img.shields.io/pypi/wheel/youqu)
+![PyPI - Implementation](https://img.shields.io/pypi/implementation/youqu)
+![Static Badge](https://img.shields.io/badge/UOS%2FDeepin-Platform?style=flat-square&label=OS)
+![Static Badge](https://img.shields.io/badge/Linux-Platform?style=flat-square&label=Platform)
+
+[![Downloads](https://static.pepy.tech/badge/youqu/week)](https://pepy.tech/project/youqu)
+[![Downloads](https://static.pepy.tech/badge/youqu/month)](https://pepy.tech/project/youqu)
+[![Downloads](https://static.pepy.tech/badge/youqu)](https://pepy.tech/project/youqu)
+![GitHub repo size](https://img.shields.io/github/repo-size/linuxdeepin/deepin-autotest-framework)
 
 English | [简体中文](README.zh_CN.md) 
 
-letmego is a solution to control the execution of Python functions. At present, the main application scenario is in the scenario where the automated test program has to be interrupted, such as the restart scenario. It is necessary to restart the machine during the execution of the steps of the automated use case. After the machine restarts, it can be restarted. Continues the functionality performed by the use case step immediately before the restart.
+YouQu is an automated testing basic framework designed and developed by Deepin Technology. It adopts the design concept of hierarchical structure, supports multiple element positioning and assertion, use case label management and execution, powerful log and report output and other special functions. At the same time, it is perfectly compatible with X11 and Wayland display protocols, the environment deployment is simple, and the operation is easy to use.
 
 ## Installation
 
 - Installing from PyPI:
 
   ```shel
-  pip3 install letmego
+  sudo pip3 install youqu
   ```
+
+  create a project:
+
+  ```shell
+  youqu-startproject my_project
+  ```
+
+  Installation dependencies:
+
+  ```sh
+  cd my_project
+  bash env.sh
+  ```
+
+- Install from source code:
+
+  ```sh
+  git clone https://github.com/linuxdeepin/deepin-autotest-framework.git my_project
+  cd my_project
+  bash env.sh
+  ```
+
+## Usage
+
+```sh
+youqu manage.py run
+```
 
 ## Documentations
 
-- [Documents](https://mikigo.github.io/letmego/)
+- [Documents](https://linuxdeepin.github.io/deepin-autotest-framework/)
 
 ## Getting help
 
@@ -41,4 +75,4 @@ We encourage you to report issues and contribute changes
 
 ## License
 
-letmego is licensed under [Apache](LICENSE)
+YouQu is licensed under [GPL-2.0-only](LICENSE)

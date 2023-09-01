@@ -1,0 +1,4 @@
+primary name from xsettings: "eDP-1" , key: "Gdk/PrimaryMonitorName"
+screen info: "eDP-1" "eDP-1-未知" QRect(0,0 1920x1080) QRect(0,0 1920x1080) "eDP-1" "eDP-1-未知" QRect(0,0 1920x1080) QRect(0,0 1920x1080)
+got primary: "eDP-1" QRect(0,0 1920x1080)
+primary screen info: "eDP-1" "eDP-1-未知" QRect(0,0 1920x1080)

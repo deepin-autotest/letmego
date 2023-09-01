@@ -1,0 +1,8 @@
+/home/uos/youqu/src/depends/wayland_autotool/build/CMakeFiles/install/strip.dir
+/home/uos/youqu/src/depends/wayland_autotool/build/CMakeFiles/edit_cache.dir
+/home/uos/youqu/src/depends/wayland_autotool/build/CMakeFiles/wayland_autotool.dir
+/home/uos/youqu/src/depends/wayland_autotool/build/CMakeFiles/list_install_components.dir
+/home/uos/youqu/src/depends/wayland_autotool/build/CMakeFiles/install/local.dir
+/home/uos/youqu/src/depends/wayland_autotool/build/CMakeFiles/rebuild_cache.dir
+/home/uos/youqu/src/depends/wayland_autotool/build/CMakeFiles/install.dir
+/home/uos/youqu/src/depends/wayland_autotool/build/CMakeFiles/wayland_autotool_autogen.dir

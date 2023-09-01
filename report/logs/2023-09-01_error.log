@@ -1,0 +1,7 @@
+[_Config]: 应用库与基础框架对应版本不一致！
+[__init__]: uos       4064  2687  0 14:26 ?        00:00:00 /bin/sh -c ps -ef | grep deepin-music
+uos       4066  4064  0 14:26 ?        00:00:00 grep deepin-music
+[__init__]: 应用程序未启动,deepin-music
+[__init__]: uos       4083  2687  0 14:26 ?        00:00:00 /bin/sh -c ps -ef | grep deepin-music
+uos       4085  4083  0 14:26 ?        00:00:00 grep deepin-music
+[__init__]: 应用程序未启动,deepin-music
