@@ -1,6 +1,10 @@
+#!/usr/bin/env python3
+# _*_ coding:utf-8 _*_
 
+# SPDX-FileCopyrightText: 2023 UnionTech Software Technology Co., Ltd.
+
+# SPDX-License-Identifier: Apache Software License
 class _Setting:
-
     # 项目名称
     PROJECT_NAME = "letmego"
     # 默认的标签记录文件的路径
@@ -11,5 +15,6 @@ class _Setting:
     PASSWORD = "1"
     # 第几次执行
     EXECUTION_COUNT = None
+
 
 setting = _Setting()

@@ -1,3 +1,9 @@
+#!/usr/bin/env python3
+# _*_ coding:utf-8 _*_
+
+# SPDX-FileCopyrightText: 2023 UnionTech Software Technology Co., Ltd.
+
+# SPDX-License-Identifier: Apache Software License
 import inspect
 import os
 import re
@@ -86,7 +92,6 @@ def _trace(func):
         page_func_name = func.__name__
         if page_func_name == "__init__":
             return func(*args, **kwargs)
-        page_func_name = func.__name__
         page_func_line = str(frame.f_back.f_lineno)
         case_func_name = str(frame.f_back.f_code.co_name)
         case_class_name = re.findall(
@@ -120,7 +125,7 @@ def mark(cls):
     class decorator
     example:
     ===============================
-    @letmego
+    @letmego.mark
     class Page:
         def click_some_element():
             ...
@@ -194,8 +199,10 @@ def unregister_autostart_service():
     os.system(f"cho '{setting.PASSWORD}' | sudo -S rm -rf /lib/systemd/system/{setting.PROJECT_NAME}.service")
 
 
-def clean_running_man():
+def clean_running_man(copy_to=None):
     """clean running man file"""
+    if copy_to:
+        os.system(f"cp {setting.RUNNING_MAN_FILE} {copy_to}")
     os.system(f"rm -rf {setting.RUNNING_MAN_FILE}")
 
 
